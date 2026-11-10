@@ -1,7 +1,29 @@
+import styles from './Footer.module.css'
+import { Link } from 'react-router'
+
+
 export default function Footer() {
   return (
-    <div>
-
-    </div>
+    <footer className={styles.footer}>
+      <div >
+        <span className={styles.name}>Casa Olivo</span>
+        <p>Cocina mediterránea de temporada</p>
+      </div>
+      <nav aria-label="Pie de página">
+        <Link to="/menu">
+          Menú
+        </Link>
+        <Link to="/reservaciones">
+          Reservaciones
+        </Link>
+        <Link to="/#contacto">
+          Contacto
+        </Link>
+        <a>
+          Instagram
+        </a>
+      </nav>
+      <span>© {new Date().getFullYear()} Casa Olivo</span>
+    </footer>
   )
 }

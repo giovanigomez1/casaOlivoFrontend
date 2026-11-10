@@ -1,0 +1,46 @@
+.footer {
+  background-color: var(--color-charcoal);
+  color: var(--color-footer-text);
+  display: flex;
+  align-items: flex-start;
+  height: auto;
+  padding: 2rem;
+  flex-direction: column;
+  gap: 4rem;
+
+  .name {
+    font-size: 2.4rem;
+    color: var(--color-ivory);
+  }
+
+  & nav {
+    display: flex;
+    gap: 1.6rem;
+    flex-direction: column;
+
+    & a {
+      text-decoration: none;
+      color: inherit;
+      padding: 1rem 0;
+    }
+
+    & a:hover {
+      color: var(--color-ivory);
+    }
+  }
+}
+
+/* ---------- Escritorio ---------- */
+@media (min-width: 56.25em) {
+  .footer {
+    flex-direction: row;
+    padding: 8rem;
+    justify-content: space-between;
+
+    & nav {
+      flex-direction: row;
+      gap: 3.2rem;
+    }
+  }
+
+}
