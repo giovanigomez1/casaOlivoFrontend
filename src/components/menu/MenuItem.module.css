@@ -1,0 +1,26 @@
+.item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 1.6rem;
+
+
+  .name {
+    font-size: 1.9rem;
+    color: var(--color-charcoal);
+    font-weight: 600;
+  }
+
+  .description {
+    font-size: 1.5rem;
+    color: var(--color-stone);
+  }
+
+  .price {
+    font-size: 1.9rem;
+    font-weight: 600;
+    color: var(--color-terracotta);
+    flex-shrink: 0;
+
+  }
+}

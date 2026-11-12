@@ -5,6 +5,7 @@
   --color-olive-muted: #6b7547;
   --color-terracotta: #a9472c;
   --color-terracotta-dark: #7e3420;
+  --color-terracotta-light: #f6e3dc;
   --color-ivory: #f6f1e7;
   --color-sand: #eee6d6;
   --color-placeholder: #d8ccb3;
@@ -15,6 +16,7 @@
   --color-muted: #6e685c;
   --color-white: #ffffff;
   --color-footer-text: #CFC8B8;
+
 
   /* Tipografía */
   --font-display: 'Fraunces', Georgia, serif;

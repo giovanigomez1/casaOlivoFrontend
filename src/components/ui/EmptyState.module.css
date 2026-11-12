@@ -1,0 +1,36 @@
+.empty {
+  margin: 4rem 2rem;
+  padding: 3.2rem 2.4rem;
+  background-color: var(--color-sand);
+  border-radius: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+
+  .iconWrapper {
+    width: 6.4rem;
+    height: 6.4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: var(--radius-pill);
+    background-color: var(--color-white);
+    align-self: center;
+  }
+
+  .title {
+    font-size: 2.4rem;
+    color: var(--color-olive);
+    font-family: var(--font-display);
+    text-align: center;
+  }
+
+  .message {
+    font-size: 1.5rem;
+    color: var(--color-stone);
+    text-align: center;
+
+  }
+}

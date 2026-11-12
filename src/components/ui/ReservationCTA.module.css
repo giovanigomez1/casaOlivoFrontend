@@ -1,0 +1,65 @@
+.ctaContainer {
+  width: 100%;
+  padding: 0 2rem;
+  margin: 0 auto;
+
+  .resevationCta {
+    background-color: var(--color-olive);
+    border-radius: 2.4rem;
+    display: flex;
+    justify-content: space-between;
+    padding: 2.4rem;
+    flex-direction: column;
+    gap: 3rem;
+
+    .title {
+      font-size: 2.6rem;
+      color: var(--color-ivory);
+      font-family: var(--font-display);
+    }
+
+    .text {
+      font-size: 1.5rem;
+      color: var(--color-ivory);
+    }
+
+    & a {
+      background-color: var(--color-terracotta);
+      text-decoration: none;
+      padding: 1.8rem 3.4rem;
+      color: var(--color-white);
+      border-radius: var(--radius-pill);
+      font-size: 1.6rem;
+      text-align: center;
+      font-weight: 600;
+    }
+  }
+}
+
+
+
+/* ---------- Escritorio ---------- */
+@media (min-width: 56.25em) {
+  .ctaContainer {
+    width: 100%;
+    max-width: 104rem;
+    margin: 0 auto;
+    padding: 0 4rem;
+
+    .resevationCta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 4.8rem 5.6rem;
+      flex-direction: row;
+
+      .title {
+        font-size: 4rem;
+      }
+
+      .text {
+        font-size: 1.8rem;
+      }
+    }
+  }
+}

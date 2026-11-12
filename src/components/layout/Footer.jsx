@@ -19,9 +19,7 @@ export default function Footer() {
         <Link to="/#contacto">
           Contacto
         </Link>
-        <a>
-          Instagram
-        </a>
+
       </nav>
       <span>© {new Date().getFullYear()} Casa Olivo</span>
     </footer>

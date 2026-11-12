@@ -3,6 +3,7 @@ import Logo from "../ui/Logo"
 import styles from './Navbar.module.css'
 import { useState, useEffect } from "react"
 import { Menu, X, Clock, Phone, ChevronRight } from 'lucide-react'
+import { RESTAURANT } from '../../constants/restaurant'
 
 export default function Navbar() {
 
@@ -94,10 +95,10 @@ export default function Navbar() {
 
         <div className={styles.info}>
           <div>
-            <p><Clock aria-hidden="true" /> Martes a domingo, 13:00 – 22:00</p>
+            <p><Clock aria-hidden="true" /> {RESTAURANT.hours}</p>
             <p className={styles.dayClosed}>Lunes cerrado</p>
           </div>
-          <p><Phone aria-hidden="true" />Teléfono</p>
+          <p><Phone aria-hidden="true" />{RESTAURANT.phone}</p>
         </div>
       </div>
 
