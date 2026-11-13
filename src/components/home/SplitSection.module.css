@@ -1,0 +1,61 @@
+.section {
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 4rem 2rem 2rem 2rem;
+  gap: 3rem;
+
+  .content {
+    display: flex;
+    gap: 1.8rem;
+    flex-direction: column;
+
+    .subtitle {
+      font-size: 1.2rem;
+      color: var(--color-olive-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    & p {
+      font-size: 1.6rem;
+      color: var(--color-stone);
+    }
+  }
+
+  .image {
+    border-radius: 2.4rem;
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+
+    & img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+  }
+}
+
+/* ---------- Escritorio ---------- */
+@media (min-width: 56.25em) {
+  .section {
+    padding: 8.8rem 8rem 5.6rem 8rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: center;
+
+    .content {
+      .subtitle {
+        font-size: 1.3rem;
+      }
+
+      & p {
+        font-size: 1.9rem;
+      }
+    }
+
+    .image {
+      aspect-ratio: 8 / 7;
+    }
+  }
+}

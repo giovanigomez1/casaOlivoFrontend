@@ -1,0 +1,31 @@
+.ourStory {
+  background-color: var(--color-sand);
+
+  .content {
+    grid-row: 1;
+
+    & h2 {
+      font-size: 4.2rem;
+    }
+
+    .link {
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--color-terracotta);
+    }
+  }
+
+}
+
+/* ---------- Escritorio ---------- */
+@media (min-width: 56.25em) {
+  .ourStory {
+    .content {
+      grid-row: auto;
+
+      & h2 {
+        font-size: clamp(3.2rem, 4vw, 4.8rem);
+      }
+    }
+  }
+}

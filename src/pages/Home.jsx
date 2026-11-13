@@ -1,3 +1,12 @@
+import Hero from '../components/home/Hero'
+import OurStory from '../components/home/OurStory'
+
+
 export default function Home() {
-  return <h1 className="container">Home</h1>
-}
+  return (
+    <>
+      <Hero />
+      <OurStory />
+    </>
+  )
+} 
