@@ -16,7 +16,7 @@ export default function OurStory() {
         <p>Casa Olivo nació de las comidas largas del sur de Europa: platos al centro, conversación y buen vino. Trabajamos con productores locales y cambiamos el menú con cada temporada.</p>
 
         <Link to='/menu' className={styles.link}>
-          Conoce el menú &rarr;
+          Conoce el menú <span aria-hidden="true"> &rarr;</span>
         </Link>
 
 

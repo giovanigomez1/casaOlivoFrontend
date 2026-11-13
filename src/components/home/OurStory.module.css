@@ -5,13 +5,14 @@
     grid-row: 1;
 
     & h2 {
-      font-size: 4.2rem;
+      font-size: 3.2rem;
     }
 
     .link {
       font-size: 1.6rem;
       font-weight: 600;
       color: var(--color-terracotta);
+      align-self: flex-start;
     }
   }
 
