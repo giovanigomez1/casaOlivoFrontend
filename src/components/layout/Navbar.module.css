@@ -151,7 +151,7 @@
 
 
 /* ---------- Escritorio ---------- */
-@media (min-width: 56.25em) {
+@media (min-width: 64em) {
 
   .header {
     padding: 0 8rem;
@@ -178,6 +178,8 @@
     display: flex;
     width: auto;
     margin-top: 0;
+    white-space: nowrap;
+    flex-shrink: 0;
   }
 
   .navigation {

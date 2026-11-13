@@ -26,7 +26,7 @@ export default function Navbar() {
 
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia('(min-width: 56.25em)')
+    const mediaQuery = window.matchMedia('(min-width: 64em)')
     const handleChange = (e) => {
       if (e.matches) setOpen(false)
     }
