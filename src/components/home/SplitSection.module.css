@@ -40,7 +40,8 @@
 /* ---------- Escritorio ---------- */
 @media (min-width: 56.25em) {
   .section {
-    padding: 8.8rem 8rem 5.6rem 8rem;
+    padding-block: 8.8rem 5.6rem;
+    padding-inline: max(8rem, (100% - var(--container-max)) / 2);
     grid-template-columns: repeat(2, minmax(0, 1fr));
     align-items: center;
 

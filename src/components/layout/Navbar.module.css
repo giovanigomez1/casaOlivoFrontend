@@ -155,6 +155,7 @@
 
   .header {
     padding: 0 8rem;
+    padding-inline: max(8rem, (100% - var(--container-max)) / 2);
   }
 
   .menu {
