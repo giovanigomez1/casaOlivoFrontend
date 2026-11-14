@@ -71,3 +71,11 @@ textarea {
     padding: 0 var(--space-5);
   }
 }
+
+.eyebrow {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--color-olive-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+}

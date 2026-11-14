@@ -7,7 +7,7 @@ export default function Hero() {
   return (
     <section className={split.section}>
       <div className={`${split.content} ${styles.content}`}>
-        <p className={split.subtitle}>Cocina Mediterránea de temporada</p>
+        <p className="eyebrow">Cocina Mediterránea de temporada</p>
         <h1>Sabores del Mediterráneo, en tu mesa.</h1>
         <p>Aceite de oliva, pan recién horneado y recetas para compartir sin prisa. Reserva tu mesa en menos de un minuto.</p>
         <div className={styles.actions}>

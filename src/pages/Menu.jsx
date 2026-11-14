@@ -7,13 +7,7 @@ import ErrorMessage from "../components/ui/ErrorMessage"
 import Spinner from "../components/ui/Spinner"
 import { UtensilsCrossed } from 'lucide-react'
 import EmptyState from "../components/ui/EmptyState"
-
-const CATEGORIES = [
-  { key: 'starters', label: 'Entradas', id: 'entradas' },
-  { key: 'mains', label: 'Platos fuertes', id: 'fuertes' },
-  { key: 'desserts', label: 'Postres', id: 'postres' },
-  { key: 'drinks', label: 'Bebidas', id: 'bebidas' },
-]
+import { CATEGORIES } from "../constants/menu"
 
 
 export default function Menu() {
@@ -54,9 +48,11 @@ export default function Menu() {
 
 
   return (
+
     <div className={style.menu}>
+      <title>Menú · Casa Olivo</title>
       <section className={style.banner}>
-        <span className={style.menu_name}>MENÚ DE OTOÑO</span>
+        <span className="eyebrow">Menú de otoño</span>
         <h1 className={style.title}>Nuestro menú</h1>
         <p className={style.message}>Ingredientes de temporada y recetas para compartir. Pregunta a tu mesero por opciones sin gluten o veganas. </p>
       </section>

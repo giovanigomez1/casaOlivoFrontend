@@ -16,11 +16,6 @@
       text-transform: uppercase;
       letter-spacing: 0.16em;
     }
-
-    & p {
-      font-size: 1.6rem;
-      color: var(--color-stone);
-    }
   }
 
   .image {
@@ -50,9 +45,7 @@
         font-size: 1.3rem;
       }
 
-      & p {
-        font-size: 1.9rem;
-      }
+
     }
 
     .image {

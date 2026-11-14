@@ -1,0 +1,48 @@
+.card {
+  background-color: var(--color-white);
+  border-radius: 1.8rem;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+
+  .image {
+    aspect-ratio: 3 / 2;
+    background-color: var(--color-placeholder);
+
+    & img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  .content {
+    padding: 1.8rem;
+
+    .title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.2rem;
+
+      .name {
+        font-size: 2rem;
+        color: var(--color-charcoal);
+        font-weight: 600;
+      }
+
+      .price {
+        color: var(--color-terracotta);
+        font-size: 1.6rem;
+        font-weight: 600;
+        flex-shrink: 0;
+      }
+    }
+
+    .description {
+      font-size: 1.5rem;
+      color: var(--color-stone);
+    }
+  }
+
+}
