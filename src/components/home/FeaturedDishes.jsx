@@ -5,11 +5,6 @@ import { Link } from 'react-router'
 import FeaturedCard from './FeaturedCard'
 import { CATEGORIES } from '../../constants/menu'
 import Spinner from "../../components/ui/Spinner"
-import ErrorMessage from '../ui/ErrorMessage'
-import EmptyState from '../ui/EmptyState'
-import { UtensilsCrossed } from 'lucide-react'
-
-
 
 export default function FeaturedDishes() {
 
