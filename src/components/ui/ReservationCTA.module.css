@@ -1,65 +1,71 @@
-.ctaContainer {
-  width: 100%;
-  padding: 0 2rem;
-  margin: 0 auto;
+.cta {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
 
-  .resevationCta {
-    background-color: var(--color-olive);
-    border-radius: 2.4rem;
-    display: flex;
-    justify-content: space-between;
-    padding: 2.4rem;
-    flex-direction: column;
-    gap: 3rem;
+.title {
+  font-size: 2.6rem;
+  color: var(--color-ivory);
+  font-family: var(--font-display);
+}
 
-    .title {
-      font-size: 2.6rem;
-      color: var(--color-ivory);
-      font-family: var(--font-display);
-    }
+.text {
+  font-size: 1.5rem;
+  color: var(--color-ivory);
+}
 
-    .text {
-      font-size: 1.5rem;
-      color: var(--color-ivory);
-    }
+.button {
+  background-color: var(--color-terracotta);
+  text-decoration: none;
+  padding: 1.8rem 3.4rem;
+  color: var(--color-white);
+  border-radius: var(--radius-pill);
+  font-size: 1.6rem;
+  text-align: center;
+  font-weight: 600;
+}
 
-    & a {
-      background-color: var(--color-terracotta);
-      text-decoration: none;
-      padding: 1.8rem 3.4rem;
-      color: var(--color-white);
-      border-radius: var(--radius-pill);
-      font-size: 1.6rem;
-      text-align: center;
-      font-weight: 600;
-    }
-  }
+.card {
+  background-color: var(--color-olive);
+  border-radius: 2.4rem;
+  margin: 0 2rem;
+  padding: 2.4rem;
+}
+
+.card .button {
+  background-color: var(--color-terracotta);
+  color: var(--color-white);
+}
+
+
+.band {
+  background-color: var(--color-terracotta);
+  padding: 4.8rem 2rem;
+}
+
+.band .button {
+  background-color: var(--color-ivory);
+  color: var(--color-terracotta-dark);
 }
 
 
 
 /* ---------- Escritorio ---------- */
 @media (min-width: 56.25em) {
-  .ctaContainer {
+
+  .cta {
+    padding-block: 8.8rem 5.6rem;
+    padding-inline: max(8rem, (100% - var(--container-max)) / 2);
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .card {
     width: 100%;
     max-width: 104rem;
     margin: 0 auto;
-    padding: 0 4rem;
-
-    .resevationCta {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 4.8rem 5.6rem;
-      flex-direction: row;
-
-      .title {
-        font-size: 4rem;
-      }
-
-      .text {
-        font-size: 1.8rem;
-      }
-    }
+    padding: 4rem;
   }
 }

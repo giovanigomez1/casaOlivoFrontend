@@ -2,20 +2,14 @@ import styles from './ReservationCTA.module.css'
 import { Link } from 'react-router'
 
 
-export default function ReservationCTA({ title, text }) {
+export default function ReservationCTA({ title, text, variant = 'card' }) {
   return (
-    <div className={styles.ctaContainer}>
-      <div className={styles.resevationCta}>
-        <div>
-          <h2 className={styles.title}>{title}</h2>
-          <p className={styles.text}>{text}</p>
-        </div>
-
-        <Link className={styles.cta} to='/reservaciones'>Reservar mesa</Link>
-
+    <section className={`${styles.cta} ${styles[variant]}`}>
+      <div>
+        <h2 className={styles.title}>{title}</h2>
+        <p className={styles.text}>{text}</p>
       </div>
-
-
-    </div>
+      <Link to="/reservaciones" className={styles.button}>Reservar mesa</Link>
+    </section>
   )
 }

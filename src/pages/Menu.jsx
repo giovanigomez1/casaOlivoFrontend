@@ -92,7 +92,7 @@ export default function Menu() {
         </>
       )}
       {!loading && !error && (
-        <ReservationCTA title='¿Se te antojó algo?' text='Reserva tu mesa en menos de 1 minuto' />
+        <ReservationCTA title='¿Se te antojó algo?' text='Reserva tu mesa en menos de un minuto' />
       )}
     </div>
   )
