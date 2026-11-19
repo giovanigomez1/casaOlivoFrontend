@@ -61,6 +61,19 @@
       "request request"
       "action action";
 
+    & fieldset {
+      border: 0;
+      padding: 0;
+      margin: 0;
+      min-inline-size: 0;
+
+      & legend {
+        font-size: 1.4rem;
+        font-weight: 600;
+        margin-bottom: .8rem;
+      }
+    }
+
     .name {
       grid-area: name;
     }
@@ -103,7 +116,7 @@
       flex-direction: column;
       gap: .4rem;
 
-      & span {
+      .hint {
         font-size: 1.3rem;
         color: var(--color-muted);
       }
@@ -128,16 +141,47 @@
         border-radius: var(--radius-input);
       }
 
-      & p {
-        color: var(--color-charcoal);
-        font-weight: 600;
-        font-size: 1.4rem;
+      .counter {
+        text-align: end;
       }
 
       .slots {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: .8rem;
+
+        & button {
+          border-radius: 1rem;
+          border: 1px solid var(--color-border-strong);
+          background-color: var(--color-white);
+          padding: 0 .6rem;
+          cursor: pointer;
+          height: 4.6rem;
+          font-size: 1.5rem;
+          color: var(--color-charcoal);
+
+          &[aria-pressed="true"] {
+            background-color: var(--color-olive);
+            color: var(--color-white);
+            font-weight: 600;
+            border-color: var(--color-olive);
+          }
+
+          &:focus-visible {
+            outline: 2px solid var(--color-olive);
+            outline-offset: 2px;
+          }
+
+          &:disabled {
+            background-color: var(--color-btn-disabled);
+            text-decoration: line-through;
+            color: var(--color-text-disabled);
+            border: 1px dashed var(--color-border-dissabled);
+            cursor: not-allowed;
+          }
+        }
+
+
       }
 
       .numberGuests {
@@ -174,8 +218,6 @@
       }
     }
 
-
-
     .action {
       border-top: 1px solid var(--color-sand);
       padding-top: 2rem;
@@ -196,10 +238,8 @@
         border: none;
         border-radius: var(--radius-pill);
         font-weight: 600;
-
       }
     }
-
   }
 }
 
@@ -213,10 +253,7 @@
       padding: 4rem;
     }
   }
-
 }
-
-
 
 @media (min-width: 64em) {
   .reservations {
@@ -246,6 +283,10 @@
         .numberGuests p span {
           display: inline;
         }
+
+        .slots {
+          grid-template-columns: repeat(6, minmax(0, 1fr));
+        }
       }
 
       .action {
@@ -254,9 +295,6 @@
         align-items: center;
       }
 
-      .slots {
-        grid-template-columns: repeat(6, minmax(0, 1fr));
-      }
 
 
     }

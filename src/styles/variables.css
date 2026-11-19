@@ -12,13 +12,14 @@
   --color-placeholder: #d8ccb3;
   --color-border: #e2d8c4;
   --color-border-strong: #c9bfa9;
+  --color-border-dissabled: #d5ccba;
   --color-charcoal: #22211e;
   --color-stone: #5c574d;
   --color-muted: #6e685c;
   --color-white: #ffffff;
-  --color-footer-text: #CFC8B8;
-
-
+  --color-footer-text: #cfc8b8;
+  --color-btn-disabled: #f3eee4;
+  --color-text-disabled: #8a8374;
 
   /* Tipografía */
   --font-display: 'Fraunces', Georgia, serif;
@@ -45,7 +46,6 @@
   --radius-pill: 999px;
   --radius-card: 20px;
   --radius-input: 12px;
-
   /* Layout */
   --container-max: 128rem;
 }
