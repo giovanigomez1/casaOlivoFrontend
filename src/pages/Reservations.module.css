@@ -133,6 +133,10 @@
         border: 1px solid var(--color-border-strong);
         height: 5rem;
         width: 100%;
+
+        &[aria-invalid="true"] {
+          border: 1px solid var(--color-terracotta);
+        }
       }
 
       & textarea {
@@ -176,12 +180,10 @@
             background-color: var(--color-btn-disabled);
             text-decoration: line-through;
             color: var(--color-text-disabled);
-            border: 1px dashed var(--color-border-dissabled);
+            border: 1px dashed var(--color-border-disabled);
             cursor: not-allowed;
           }
         }
-
-
       }
 
       .numberGuests {
@@ -197,6 +199,7 @@
         & p {
           font-size: 1.7rem;
           font-weight: 600;
+          white-space: nowrap;
 
           & span {
             display: none;
@@ -227,10 +230,6 @@
       align-items: stretch;
       margin-top: 3rem;
 
-      & p {
-        text-align: center;
-      }
-
       & button {
         background-color: var(--color-terracotta);
         color: var(--color-white);
@@ -238,11 +237,33 @@
         border: none;
         border-radius: var(--radius-pill);
         font-weight: 600;
+        cursor: pointer;
+
+        &:disabled {
+          background-color: var(--color-btn-disabled);
+          color: var(--color-text-disabled);
+          cursor: not-allowed;
+        }
+      }
+
+      .summary {
+        flex: 1;
+        min-width: 0;
+        text-align: center;
+      }
+
+      .submitError {
+        color: var(--color-terracotta-dark);
+        flex-basis: 100%;
       }
     }
   }
 }
 
+.error {
+  font-size: 1.3rem;
+  color: var(--color-terracotta-dark);
+}
 
 @media (min-width: 56.25em) {
   .reservations {
@@ -269,7 +290,6 @@
     }
 
     .form {
-
       grid-template-areas:
         "name email"
         "phone guests"
@@ -280,10 +300,6 @@
       column-gap: 2rem;
 
       .element {
-        .numberGuests p span {
-          display: inline;
-        }
-
         .slots {
           grid-template-columns: repeat(6, minmax(0, 1fr));
         }
@@ -291,12 +307,32 @@
 
       .action {
         flex-direction: row;
-        justify-content: space-between;
         align-items: center;
+        flex-wrap: wrap;
+
+        & button {
+          margin-inline-start: auto;
+          white-space: nowrap;
+          flex-shrink: 0;
+        }
+
+        .summary {
+          text-align: start;
+        }
       }
+    }
+  }
+}
 
 
-
+@media (min-width: 75em) {
+  .reservations {
+    .form {
+      .element {
+        .numberGuests p span {
+          display: inline;
+        }
+      }
     }
   }
 }
