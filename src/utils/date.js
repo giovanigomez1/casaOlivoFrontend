@@ -11,22 +11,35 @@ function capitalize(text) {
   return text.charAt(0).toUpperCase() + text.slice(1)
 }
 
-export function formatShortDate(dateStr) {
+function toLocalDate(dateStr) {
   const [year, month, day] = dateStr.split('-').map(Number)
-  const fecha = new Date(year, month - 1, day)
+  return new Date(year, month - 1, day)
+}
+
+function toDateString(date) {
+  const month = String(date.getMonth() + 1).padStart(2, '0')
+  const day = String(date.getDate()).padStart(2, '0')
+  return `${date.getFullYear()}-${month}-${day}`
+}
+
+export function formatShortDate(dateStr) {
   const parts = new Intl.DateTimeFormat('es-MX', {
     weekday: 'short', day: 'numeric', month: 'short'
-  }).formatToParts(fecha);
+  }).formatToParts(toLocalDate(dateStr));
   const get = (type) => parts.find((p) => p.type === type).value;
   const weekday = get('weekday')
   return `${capitalize(weekday)} ${get('day')} ${get('month')}`
 }
 
 export function formatLongDate(dateStr) {
-  const [year, month, day] = dateStr.split('-').map(Number)
-  const fecha = new Date(year, month - 1, day)
   const formatted = new Intl.DateTimeFormat('es-MX', {
     weekday: 'long', day: 'numeric', month: 'long'
-  }).format(fecha);
+  }).format(toLocalDate(dateStr));
   return capitalize(formatted)
+}
+
+export function addDays(dateStr, n) {
+  const date = toLocalDate(dateStr)
+  date.setDate(date.getDate() + n)
+  return toDateString(date)
 }
