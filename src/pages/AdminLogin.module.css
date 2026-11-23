@@ -1,0 +1,113 @@
+.container {
+  background-color: var(--color-olive);
+  display: grid;
+  place-items: center;
+  padding: 2.4rem;
+  width: 100%;
+  min-height: 100dvh;
+}
+
+.form {
+  width: 100%;
+  max-width: 64rem;
+  background-color: var(--color-ivory);
+  border-radius: 2.4rem;
+  padding: 2.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+
+  @media (min-width: 56.25em) {
+    padding: 4.4rem;
+  }
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--color-olive);
+  gap: 1rem;
+}
+
+.logoText {
+  font-size: 2.6rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+}
+
+.title {
+  & h1 {
+    color: var(--color-olive);
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 4.2vw, 4rem);
+    line-height: 1;
+  }
+
+  & p {
+    font-size: 1.5rem;
+    color: var(--color-stone);
+  }
+}
+
+.identifier,
+.password {
+  display: flex;
+  flex-direction: column;
+  gap: .8rem;
+
+  & label {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--color-charcoal);
+  }
+
+  & input {
+    color: var(--color-charcoal);
+    border-radius: 1.2rem;
+    border: 1px solid var(--color-border-strong);
+    font-size: 1.6rem;
+    padding: 0 1.6rem;
+    height: 5rem;
+
+    &[aria-invalid="true"] {
+      border-color: var(--color-terracotta);
+    }
+  }
+}
+
+.submit {
+  background-color: var(--color-olive);
+  color: var(--color-white);
+  border: none;
+  border-radius: var(--radius-pill);
+  height: 5.2rem;
+  margin-top: 2rem;
+  font-weight: 600;
+  cursor: pointer;
+
+  &:disabled {
+    background-color: var(--color-btn-disabled);
+    color: var(--color-text-disabled);
+    cursor: not-allowed;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-olive);
+    outline-offset: 2px;
+  }
+}
+
+.backLink {
+  font-weight: 600;
+  color: var(--color-terracotta);
+  align-self: center;
+}
+
+.error {
+  font-size: 1.3rem;
+  color: var(--color-terracotta-dark);
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+}

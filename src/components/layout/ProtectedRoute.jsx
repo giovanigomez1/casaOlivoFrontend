@@ -1,7 +1,7 @@
 import { useAuth } from "../../context/AuthContext"
 import { Outlet, useLocation, Navigate } from "react-router"
 import Spinner from "../ui/Spinner"
-import styles from './ProtectedRoute.module.css'
+import FullPageSpinner from "../ui/FullPageSpinner"
 
 export default function ProtectedRoute() {
   const { status } = useAuth()
@@ -9,9 +9,9 @@ export default function ProtectedRoute() {
 
   if (status === 'checking') {
     return (
-      <div className={styles.protected}>
+      <FullPageSpinner>
         <Spinner label='Verificando sesión…' />
-      </div>
+      </FullPageSpinner>
     )
   }
 
