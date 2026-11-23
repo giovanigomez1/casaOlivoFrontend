@@ -8,6 +8,8 @@ import AdminLogin from './pages/AdminLogin'
 import AdminDashboard from './pages/AdminDashboard'
 import NotFound from './pages/NotFound'
 import ScrollTop from "./components/layout/ScrollTop"
+import AdminRoot from "./components/layout/AdminRoot"
+import ProtectedRoute from "./components/layout/ProtectedRoute"
 
 
 
@@ -23,8 +25,14 @@ export default function App() {
           <Route path="reservaciones/confirmacion" element={<Confirmation />} />
           <Route path="*" element={<NotFound />} />
         </Route>
-        <Route path="admin/login" element={<AdminLogin />} />
-        <Route path="admin" element={<AdminDashboard />} />
+
+        <Route element={<AdminRoot />}>
+          <Route path="admin/login" element={<AdminLogin />} />
+          <Route element={<ProtectedRoute />}>
+            <Route path="admin" element={<AdminDashboard />} />
+          </Route>
+        </Route>
+
       </Routes>
     </BrowserRouter>
   )
