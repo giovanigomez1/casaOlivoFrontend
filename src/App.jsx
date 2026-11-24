@@ -10,8 +10,7 @@ import NotFound from './pages/NotFound'
 import ScrollTop from "./components/layout/ScrollTop"
 import AdminRoot from "./components/layout/AdminRoot"
 import ProtectedRoute from "./components/layout/ProtectedRoute"
-
-
+import AdminLayout from "./components/layout/AdminLayout"
 
 export default function App() {
   return (
@@ -20,16 +19,18 @@ export default function App() {
       <Routes>
         <Route element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="menu" element={<Menu />} />
-          <Route path="reservaciones" element={<Reservations />} />
-          <Route path="reservaciones/confirmacion" element={<Confirmation />} />
+          <Route path="/menu" element={<Menu />} />
+          <Route path="/reservaciones" element={<Reservations />} />
+          <Route path="/reservaciones/confirmacion" element={<Confirmation />} />
           <Route path="*" element={<NotFound />} />
         </Route>
 
         <Route element={<AdminRoot />}>
-          <Route path="admin/login" element={<AdminLogin />} />
+          <Route path="/admin/login" element={<AdminLogin />} />
           <Route element={<ProtectedRoute />}>
-            <Route path="admin" element={<AdminDashboard />} />
+            <Route element={<AdminLayout />}>
+              <Route path="/admin" element={<AdminDashboard />} />
+            </Route>
           </Route>
         </Route>
 

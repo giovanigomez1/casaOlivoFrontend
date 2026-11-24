@@ -40,7 +40,6 @@
   @media (min-width: 64em) {
     padding: 0;
   }
-
 }
 
 .logoText {
@@ -98,8 +97,6 @@
     display: flex;
   }
 }
-
-
 
 .account {
   display: flex;
@@ -170,7 +167,6 @@
   font-size: 1.5rem;
   color: var(--color-white);
   font-weight: 600;
-
 }
 
 .role {
@@ -194,5 +190,14 @@
     overflow: visible;
     clip-path: none;
     white-space: normal;
+  }
+}
+
+.brand,
+.nav a,
+.logout {
+  &:focus-visible {
+    outline: 2px solid var(--color-ivory);
+    outline-offset: 2px;
   }
 }

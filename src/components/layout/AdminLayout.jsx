@@ -31,10 +31,10 @@ export default function AdminLayout() {
         </nav>
         <div className={styles.account}>
           <span className={styles.avatar} aria-hidden="true">
-            {`${user.firstName[0]} ${user.lastName[0]}`}
+            {`${user.firstName[0]}${user.lastName[0]}`}
           </span>
           <p className={styles.user}>
-            <span className={styles.name}>{user.firstName}{user.lastName}</span>
+            <span className={styles.name}>{user.firstName} {user.lastName}</span>
             <span className={styles.role}>{ROLE_LABELS[user.role]}</span>
           </p>
           <button type="button" onClick={logout} className={styles.logout}>
