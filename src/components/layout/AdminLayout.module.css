@@ -16,6 +16,7 @@
   background-color: var(--color-olive);
   align-items: center;
   gap: 1rem;
+  padding: 0 1.2rem 0 2rem;
 
   @media (min-width: 64em) {
     flex-direction: column;
@@ -35,11 +36,6 @@
   color: var(--color-ivory);
   text-decoration: none;
   gap: 1rem;
-  padding: 0 1.2rem 0 2rem;
-
-  @media (min-width: 64em) {
-    padding: 0;
-  }
 }
 
 .logoText {
@@ -47,7 +43,6 @@
   align-items: flex-start;
   justify-content: center;
   flex-direction: column;
-
 }
 
 .barSub {
@@ -105,6 +100,7 @@
   border-left: 1px solid var(--color-olive-light);
   border-top: none;
   padding: 0 0 0 2rem;
+  align-items: center;
 
   @media (min-width: 64em) {
     margin-top: auto;
@@ -133,11 +129,6 @@
       transform: rotate(180deg);
     }
   }
-
-  & p {
-    color: var(--color-footer-text);
-  }
-
 }
 
 .avatar {
@@ -199,5 +190,13 @@
   &:focus-visible {
     outline: 2px solid var(--color-ivory);
     outline-offset: 2px;
+  }
+}
+
+.main {
+  padding: 2.8rem 2rem;
+
+  @media (min-width: 64em) {
+    padding: 4.4rem 5.6rem;
   }
 }
