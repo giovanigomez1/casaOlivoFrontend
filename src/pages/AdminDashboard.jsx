@@ -1,32 +1,90 @@
 import { useAuth } from "../context/AuthContext"
-import { getReservations, cancelReservation } from "../api/reservations"
-import { useEffect } from "react"
-import { getTodayInMexico, addDays } from "../utils/date"
+import { getReservations } from "../api/reservations"
+import { useEffect, useState } from "react"
+import { getTodayInMexico, addDays, formatFullDate, formatShortDate } from "../utils/date"
+import styles from './AdminDashboard.module.css'
+import ErrorMessage from "../components/ui/ErrorMessage"
+import Spinner from "../components/ui/Spinner"
+
+const RANGES = {
+  today: { label: 'Hoy', days: 0 },
+  tomorrow: { label: 'Mañana', start: 1, days: 0 },
+  week: { label: 'Esta semana', days: 6 }
+}
+
+function getDates(key) {
+  const { start = 0, days } = RANGES[key]
+  const from = addDays(getTodayInMexico(), start)
+  return { from, to: addDays(from, days) }
+}
 
 export default function AdminDashboard() {
-  const { logout } = useAuth()
+
+  const [range, setRange] = useState('today')
+  const [reservations, setReservations] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
+  const [reloadKey, setReloadKey] = useState(0)
+  const { expireSession } = useAuth()
 
   useEffect(() => {
-    const today = getTodayInMexico()
-    async function getAll() {
-      const body = await getReservations({ from: today, to: addDays(today, 1) })
-      console.log(body)
+    let ignore = false
+
+    async function loadReservations() {
+      try {
+        setLoading(true)
+        setError(null)
+        const data = await getReservations(getDates(range))
+        if (!ignore) {
+          setReservations(data)
+        }
+      } catch (err) {
+        if (!ignore) {
+          if (err.status === 401) {
+            expireSession()
+          } else {
+            setError(err.message)
+          }
+        }
+      } finally {
+        if (!ignore) setLoading(false)
+      }
     }
-    getAll()
+    loadReservations()
+    return () => {
+      ignore = true
+    }
+  }, [reloadKey, expireSession, range])
 
-  }, [])
-
-  async function cancel() {
-    const res = await cancelReservation("6b048ec4f8e40bfe65d92c94")
-    console.log(res)
-  }
+  const retry = () => setReloadKey(key => key + 1)
+  const { from, to } = getDates(range)
 
   return (
-    <div>
+    <>
       <title>Panel · Casa Olivo</title>
-      <h1 className="container">AdminDashboard</h1>
-      <button type="button" onClick={logout}>Logout</button>
-      <button type="button" onClick={cancel}>cancel</button>
-    </div>
+      <header className={styles.header}>
+        <div className={styles.title}>
+          <h1>Reservaciones</h1>
+          <p>{from === to ? formatFullDate(from) : `${formatShortDate(from)} - ${formatShortDate(to)}`}</p>
+        </div>
+        <div role="group" aria-label="Filtrar por fecha" className={styles.filter}>
+          {Object.entries(RANGES).map(([key, { label }]) => (
+            <button type="button" key={key} aria-pressed={range === key} onClick={() => setRange(key)}>
+              {label}
+            </button>
+          )
+          )}
+        </div>
+        <div className={styles.search}>
+          <label htmlFor="search">Buscar</label>
+          <input id="search" name="search" type="search" placeholder="Buscar por nombre o código" />
+        </div>
+      </header>
+      {loading && <Spinner label="Cargando reservaciones…" />}
+      {!loading && error && <ErrorMessage title='No pudimos cargar las reservaciones' message={error} onRetry={retry} />}
+      {!loading && !error && (
+        <ul>{reservations.map(r => <li key={r._id}>{r.date} {r.time} {r.name}</li>)}</ul>
+      )}
+    </>
   )
 }

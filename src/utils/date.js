@@ -38,6 +38,13 @@ export function formatLongDate(dateStr) {
   return capitalize(formatted)
 }
 
+export function formatFullDate(dateStr) {
+  const formatted = new Intl.DateTimeFormat('es-MX', {
+    weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'
+  }).format(toLocalDate(dateStr));
+  return capitalize(formatted)
+}
+
 export function addDays(dateStr, n) {
   const date = toLocalDate(dateStr)
   date.setDate(date.getDate() + n)

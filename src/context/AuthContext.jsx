@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useState } from "react";
 import * as authApi from '../api/auth'
 
 const AuthContext = createContext(null)
@@ -42,10 +42,10 @@ export function AuthProvider({ children }) {
     }
   }
 
-  function expireSession() {
+  const expireSession = useCallback(() => {
     setUser(null)
     setStatus('guest')
-  }
+  }, [])
 
   const value = { user, status, login, logout, expireSession }
 
