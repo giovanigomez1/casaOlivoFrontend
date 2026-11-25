@@ -25,6 +25,7 @@ export default function AdminDashboard() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [reloadKey, setReloadKey] = useState(0)
+  const [search, setSearch] = useState('')
   const { expireSession } = useAuth()
 
   useEffect(() => {
@@ -59,32 +60,70 @@ export default function AdminDashboard() {
   const retry = () => setReloadKey(key => key + 1)
   const { from, to } = getDates(range)
 
+  function normalize(text) {
+    return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
+  }
+
+  const query = search.trim().toLowerCase()
+  const visible = query ? reservations.filter(r => (
+    normalize(r.name).includes(query) || r.code.toLowerCase().includes(query))
+  ) : reservations
+
+  const confirmed = reservations.filter(r => r.status === 'confirmed')
+  const stats = {
+    count: confirmed.length,
+    guests: confirmed.reduce((total, r) => total + r.guests, 0),
+    cancelled: reservations.filter(r => r.status === 'cancelled').length
+  }
+
   return (
-    <>
+    <div className={styles.page}>
       <title>Panel · Casa Olivo</title>
       <header className={styles.header}>
         <div className={styles.title}>
           <h1>Reservaciones</h1>
-          <p>{from === to ? formatFullDate(from) : `${formatShortDate(from)} - ${formatShortDate(to)}`}</p>
+          <p>{from === to ? formatFullDate(from) : `${formatShortDate(from)} – ${formatShortDate(to)}`}</p>
         </div>
         <div role="group" aria-label="Filtrar por fecha" className={styles.filter}>
           {Object.entries(RANGES).map(([key, { label }]) => (
             <button type="button" key={key} aria-pressed={range === key} onClick={() => setRange(key)}>
               {label}
             </button>
-          )
-          )}
+          ))}
         </div>
         <div className={styles.search}>
           <label htmlFor="search">Buscar</label>
-          <input id="search" name="search" type="search" placeholder="Buscar por nombre o código" />
+          <input
+            id="search"
+            name="search"
+            type="search"
+            placeholder="Buscar por nombre o código"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
         </div>
       </header>
       {loading && <Spinner label="Cargando reservaciones…" />}
       {!loading && error && <ErrorMessage title='No pudimos cargar las reservaciones' message={error} onRetry={retry} />}
       {!loading && !error && (
-        <ul>{reservations.map(r => <li key={r._id}>{r.date} {r.time} {r.name}</li>)}</ul>
+        <>
+          <dl className={styles.stats}>
+            <div className={styles.stat}>
+              <dt>Reservaciones</dt>
+              <dd>{stats.count}</dd>
+            </div>
+            <div className={styles.stat}>
+              <dt>Personas <span>esperadas</span></dt>
+              <dd>{stats.guests}</dd>
+            </div>
+            <div className={styles.stat}>
+              <dt>Canceladas</dt>
+              <dd className={styles.cancelled}>{stats.cancelled}</dd>
+            </div>
+          </dl>
+          <ul>{visible.map(r => <li key={r._id}>{r.date} {r.time} {r.name} {r.code}</li>)}</ul>
+        </>
       )}
-    </>
+    </div>
   )
 }
