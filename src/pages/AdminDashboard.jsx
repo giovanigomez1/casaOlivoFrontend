@@ -7,17 +7,24 @@ import ErrorMessage from "../components/ui/ErrorMessage"
 import Spinner from "../components/ui/Spinner"
 import ReservationsList from "../components/admin/ReservationsList"
 import ReservationsTable from "../components/admin/ReservationsTable"
+import { CalendarX, SearchX } from 'lucide-react'
+import EmptyState from "../components/ui/EmptyState"
+
 
 const RANGES = {
-  today: { label: 'Hoy', days: 0 },
-  tomorrow: { label: 'Mañana', start: 1, days: 0 },
-  week: { label: 'Esta semana', days: 6 }
+  today: { label: 'Hoy', days: 0, empty: 'para hoy' },
+  tomorrow: { label: 'Mañana', start: 1, days: 0, empty: 'para mañana' },
+  week: { label: 'Esta semana', days: 6, empty: 'para esta semana' }
 }
 
 function getDates(key) {
   const { start = 0, days } = RANGES[key]
   const from = addDays(getTodayInMexico(), start)
   return { from, to: addDays(from, days) }
+}
+
+function normalize(text) {
+  return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
 }
 
 export default function AdminDashboard() {
@@ -61,11 +68,7 @@ export default function AdminDashboard() {
   const retry = () => setReloadKey(key => key + 1)
   const { from, to } = getDates(range)
 
-  function normalize(text) {
-    return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
-  }
-
-  const query = search.trim().toLowerCase()
+  const query = normalize(search.trim()).toLowerCase()
   const visible = query ? reservations.filter(r => (
     normalize(r.name).includes(query) || r.code.toLowerCase().includes(query))
   ) : reservations
@@ -104,6 +107,9 @@ export default function AdminDashboard() {
           />
         </div>
       </header>
+      <p className="visually-hidden" aria-live="polite">
+        {query && `${visible.length} ${visible.length === 1 ? 'resultado' : 'resultados'}`}
+      </p>
       {loading && <Spinner label="Cargando reservaciones…" />}
       {!loading && error && <ErrorMessage title='No pudimos cargar las reservaciones' message={error} onRetry={retry} />}
       {!loading && !error && (
@@ -122,8 +128,18 @@ export default function AdminDashboard() {
               <dd className={styles.cancelled}>{stats.cancelled}</dd>
             </div>
           </dl>
-          <ReservationsTable reservations={visible} showDate={from !== to} />
-          <ReservationsList reservations={visible} showDate={from !== to} />
+          {reservations.length === 0 ? (
+            <EmptyState icon={CalendarX} title={`No hay reservaciones ${RANGES[range].empty}`} message='Las nuevas reservaciones aparecerán aquí' />
+          ) : visible.length === 0 ? (
+            <EmptyState icon={SearchX} title={`Ninguna reservación coincide con «${search.trim()}»`} message="Revisa el nombre o código">
+              <button type="button" onClick={() => setSearch('')} className={styles.clear}>Limpiar búsqueda</button>
+            </EmptyState>
+          ) : (
+            <>
+              <ReservationsTable reservations={visible} showDate={from !== to} />
+              <ReservationsList reservations={visible} showDate={from !== to} />
+            </>
+          )}
         </>
       )}
     </div>
