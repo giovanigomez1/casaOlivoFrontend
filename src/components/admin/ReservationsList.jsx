@@ -1,8 +1,9 @@
 import styles from './ReservationsList.module.css'
 import StatusBadge from './StatusBadge'
 import { formatShortDate } from '../../utils/date'
+import CancelButton from './CancelButton'
 
-export default function ReservationsList({ reservations, showDate }) {
+export default function ReservationsList({ reservations, showDate, canCancel, cancellingId, onCancel }) {
   return (
     <ul className={styles.wrapper}>
       {reservations.map(r => {
@@ -29,6 +30,14 @@ export default function ReservationsList({ reservations, showDate }) {
           )}
           {r.specialRequest && isActive && (
             <p className={styles.request}><strong>Petición: </strong>{r.specialRequest}</p>
+          )}
+          {canCancel && isActive && (
+            <CancelButton
+              reservation={r}
+              cancelling={cancellingId === r._id}
+              onCancel={onCancel}
+              label="Cancelar reservación"
+            />
           )}
         </li>
       })}

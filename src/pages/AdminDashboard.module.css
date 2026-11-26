@@ -183,3 +183,19 @@
     outline-offset: 2px;
   }
 }
+
+.success,
+.error {
+  padding: 1.2rem 1.6rem;
+  border-radius: var(--radius-input);
+}
+
+.success {
+  background-color: var(--color-olive-pale);
+  color: var(--color-olive);
+}
+
+.error {
+  background-color: var(--color-terracotta-light);
+  color: var(--color-terracotta-dark);
+}

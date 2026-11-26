@@ -1,8 +1,9 @@
 import styles from './ReservationsTable.module.css'
 import StatusBadge from './StatusBadge'
 import { formatShortDate } from '../../utils/date'
+import CancelButton from './CancelButton'
 
-export default function ReservationsTable({ reservations, showDate }) {
+export default function ReservationsTable({ reservations, showDate, canCancel, cancellingId, onCancel }) {
   return (
     <div className={styles.wrapper}>
       <table className={styles.table}>
@@ -36,7 +37,15 @@ export default function ReservationsTable({ reservations, showDate }) {
               </td>
               <td>{r.specialRequest ? <span>{r.specialRequest}</span> : (<><span aria-hidden="true">—</span><span className='visually-hidden'>Sin petición</span></>)}</td>
               <td><StatusBadge status={r.status} /></td>
-              <td></td>
+              <td>
+                {canCancel && r.status === 'confirmed' && (
+                  <CancelButton
+                    reservation={r}
+                    cancelling={cancellingId === r._id}
+                    onCancel={onCancel}
+                  />
+                )}
+              </td>
             </tr>
           ))}
         </tbody>

@@ -1,0 +1,28 @@
+.cancel {
+  background-color: var(--color-white);
+  color: var(--color-terracotta);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-pill);
+  height: 4.4rem;
+  font: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+  font-weight: 600;
+  padding: 0 1.6rem;
+
+  &:disabled {
+    background-color: var(--color-btn-disabled);
+    color: var(--color-text-disabled);
+    opacity: .6;
+    cursor: progress;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-olive);
+    outline-offset: 2px;
+  }
+
+  @media (min-width: 56.25em) {
+    height: 4rem;
+  }
+}

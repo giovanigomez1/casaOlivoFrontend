@@ -1,5 +1,5 @@
 import { useAuth } from "../context/AuthContext"
-import { getReservations } from "../api/reservations"
+import { cancelReservation, getReservations } from "../api/reservations"
 import { useEffect, useState } from "react"
 import { getTodayInMexico, addDays, formatFullDate, formatShortDate } from "../utils/date"
 import styles from './AdminDashboard.module.css'
@@ -34,7 +34,11 @@ export default function AdminDashboard() {
   const [error, setError] = useState(null)
   const [reloadKey, setReloadKey] = useState(0)
   const [search, setSearch] = useState('')
-  const { expireSession } = useAuth()
+  const { user, expireSession } = useAuth()
+
+  const canCancel = user.role === 'admin'
+  const [cancellingId, setCancellingId] = useState(null)
+  const [actionMessage, setActionMessage] = useState(null)
 
   useEffect(() => {
     let ignore = false
@@ -80,6 +84,28 @@ export default function AdminDashboard() {
     cancelled: reservations.filter(r => r.status === 'cancelled').length
   }
 
+  async function handleCancel(reservation) {
+    const ok = window.confirm(`¿Cancelar la reservación de ${reservation.name} a las ${reservation.time}?`)
+    if (!ok) return
+
+    setCancellingId(reservation._id)
+    setActionMessage(null)
+    try {
+      const updated = await cancelReservation(reservation._id)
+      setReservations(prev => prev.map(r => r._id === updated._id ? updated : r))
+      setActionMessage({ type: 'success', text: `Se canceló la reservación de ${reservation.name}.` })
+
+    } catch (err) {
+      if (err.status === 401) {
+        expireSession()
+      } else {
+        setActionMessage({ type: 'error', text: err.message })
+      }
+    } finally {
+      setCancellingId(null)
+    }
+  }
+
   return (
     <div className={styles.page}>
       <title>Panel · Casa Olivo</title>
@@ -90,7 +116,10 @@ export default function AdminDashboard() {
         </div>
         <div role="group" aria-label="Filtrar por fecha" className={styles.filter}>
           {Object.entries(RANGES).map(([key, { label }]) => (
-            <button type="button" key={key} aria-pressed={range === key} onClick={() => setRange(key)}>
+            <button type="button" key={key} aria-pressed={range === key} onClick={() => {
+              setRange(key)
+              setActionMessage(null)
+            }}>
               {label}
             </button>
           ))}
@@ -114,6 +143,12 @@ export default function AdminDashboard() {
       {!loading && error && <ErrorMessage title='No pudimos cargar las reservaciones' message={error} onRetry={retry} />}
       {!loading && !error && (
         <>
+          <p role="status" className={actionMessage?.type === 'success' ? styles.success : 'visually-hidden'}>
+            {actionMessage?.type === 'success' && actionMessage.text}
+          </p>
+          {actionMessage?.type === 'error' && (
+            <p role='alert' className={styles.error}>{actionMessage.text}</p>
+          )}
           <dl className={styles.stats}>
             <div className={styles.stat}>
               <dt>Reservaciones</dt>
@@ -136,8 +171,20 @@ export default function AdminDashboard() {
             </EmptyState>
           ) : (
             <>
-              <ReservationsTable reservations={visible} showDate={from !== to} />
-              <ReservationsList reservations={visible} showDate={from !== to} />
+              <ReservationsTable
+                reservations={visible}
+                showDate={from !== to}
+                canCancel={canCancel}
+                cancellingId={cancellingId}
+                onCancel={handleCancel}
+              />
+              <ReservationsList
+                reservations={visible}
+                showDate={from !== to}
+                canCancel={canCancel}
+                cancellingId={cancellingId}
+                onCancel={handleCancel}
+              />
             </>
           )}
         </>
