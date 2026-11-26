@@ -1,4 +1,4 @@
-import { useAuth } from "../../context/AuthContext"
+import { useAuth } from '../../hooks/useAuth'
 import styles from './AdminLayout.module.css'
 import { Outlet, Link, NavLink } from "react-router"
 import Logo from "../ui/Logo"

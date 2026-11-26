@@ -1,4 +1,4 @@
-import { useAuth } from "../context/AuthContext"
+import { useAuth } from "../hooks/useAuth"
 import { Navigate, useNavigate, useLocation, Link } from "react-router"
 import styles from './AdminLogin.module.css'
 import Logo from "../components/ui/Logo"

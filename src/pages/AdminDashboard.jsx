@@ -1,4 +1,4 @@
-import { useAuth } from "../context/AuthContext"
+import { useAuth } from "../hooks/useAuth"
 import { cancelReservation, getReservations } from "../api/reservations"
 import { useEffect, useState } from "react"
 import { getTodayInMexico, addDays, formatFullDate, formatShortDate } from "../utils/date"
