@@ -5,6 +5,8 @@ import { getTodayInMexico, addDays, formatFullDate, formatShortDate } from "../u
 import styles from './AdminDashboard.module.css'
 import ErrorMessage from "../components/ui/ErrorMessage"
 import Spinner from "../components/ui/Spinner"
+import ReservationsList from "../components/admin/ReservationsList"
+import ReservationsTable from "../components/admin/ReservationsTable"
 
 const RANGES = {
   today: { label: 'Hoy', days: 0 },
@@ -19,7 +21,6 @@ function getDates(key) {
 }
 
 export default function AdminDashboard() {
-
   const [range, setRange] = useState('today')
   const [reservations, setReservations] = useState([])
   const [loading, setLoading] = useState(true)
@@ -121,7 +122,8 @@ export default function AdminDashboard() {
               <dd className={styles.cancelled}>{stats.cancelled}</dd>
             </div>
           </dl>
-          <ul>{visible.map(r => <li key={r._id}>{r.date} {r.time} {r.name} {r.code}</li>)}</ul>
+          <ReservationsTable reservations={visible} showDate={from !== to} />
+          <ReservationsList reservations={visible} showDate={from !== to} />
         </>
       )}
     </div>

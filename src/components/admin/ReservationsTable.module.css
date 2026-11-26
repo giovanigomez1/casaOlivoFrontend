@@ -1,0 +1,96 @@
+.wrapper {
+  border-radius: 1.8rem;
+  overflow-x: auto;
+  background-color: var(--color-white);
+  display: none;
+
+  @media (min-width: 80em) {
+    display: block;
+  }
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+
+  & th {
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-stone);
+    background-color: var(--color-sand);
+    text-align: left;
+    padding: 1.6rem 1.4rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+  }
+
+  & tr {
+    border-top: 1px solid var(--color-sand);
+  }
+
+  & td {
+    padding: 1.6rem 1.4rem;
+    text-align: left;
+    font-size: 1.5rem;
+    vertical-align: middle;
+
+  }
+}
+
+.name,
+.code {
+  display: block;
+}
+
+.name {
+  color: var(--color-charcoal);
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.code {
+  font-size: 1.3rem;
+  color: var(--color-muted);
+}
+
+.time {
+  font-weight: 600;
+}
+
+.when {
+  & span {
+    display: block;
+  }
+
+  & .date {
+    font-size: 1.3rem;
+    color: var(--color-muted);
+  }
+}
+
+.date,
+.time {
+  white-space: nowrap;
+}
+
+.contact {
+  & a {
+    text-decoration: none;
+    color: var(--color-stone);
+    font-size: 1.4rem;
+    display: block;
+  }
+}
+
+.cancelled {
+  background-color: var(--color-ivory-pale);
+  color: var(--color-text-disabled);
+
+  & .time {
+    text-decoration: line-through;
+  }
+
+  & .name {
+    color: var(--color-text-disabled);
+  }
+}
