@@ -42,7 +42,7 @@ a {
 }
 
 a:hover {
-  color: var(--color-terracotta-dark);
+  color: var(--color-terracotta-light);
 }
 
 button,
