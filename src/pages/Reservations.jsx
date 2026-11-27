@@ -101,6 +101,7 @@ export default function Reservations() {
 
   return (
     <div className={styles.reservations}>
+      <title>Reservaciones · Casa Olivo</title>
       <div className={styles.content}>
         <p className='eyebrow'>Reservaciones</p>
         <h1>Reserva tu mesa</h1>

@@ -6,6 +6,7 @@ import styles from './NotFound.module.css'
 export default function NotFound() {
   return (
     <div className={styles.notFound}>
+      <title>Página no encontrada · Casa Olivo</title>
       <div className={styles.iconWrapper}>
         <FileQuestionMark size={30} aria-hidden="true" />
       </div>
